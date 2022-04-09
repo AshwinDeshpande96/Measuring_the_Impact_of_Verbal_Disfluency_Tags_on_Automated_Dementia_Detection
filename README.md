@@ -4,7 +4,7 @@ This repository contains code developed for the paper entitled "How You Say It M
 
 NOTE ON DATA: While the data used in this paper are publicly available, we are not able to redistribute any of these data as per Data Use agreement with Dementia Bank and the Carolinas Conversations Collection. In order to obtain these data, individual investigators need to contact the Dementia Bank and CCC and request access to the data.
 
-## 3 Data and Task Setup
+## Data and Task Setup
 
 We use ADReSS data published as a part of INTERSPEECH 2020 challenge. This data consists of spontaneous speech data for two groups:
 * HD - Control - Subjects with no cognitive decline
