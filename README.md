@@ -15,9 +15,9 @@ Each clip consist of utterances belong to one of two participants: the subject a
 
 Following steps are carried out to prepare the data:
 1. Prepare Gold and ASR Utterances:
-  * Identify subject utterances mentioned in manually transcribed text along with it's segment in audio
-  * Extract audio segment for audio which consists of subject's speech
-  * Transcribe each segment using Google ASR
+    * Identify subject utterances mentioned in manually transcribed text along with it's segment in audio
+    * Extract audio segment for audio which consists of subject's speech
+    * Transcribe each segment using Google ASR
 2. Identify disfluencies in each utterance
 
 
