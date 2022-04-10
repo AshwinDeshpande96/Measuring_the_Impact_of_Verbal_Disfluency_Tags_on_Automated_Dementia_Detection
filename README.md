@@ -23,8 +23,8 @@ Following steps are carried out to prepare the data:
 2. Remove disfluencies from manual transcripts:[[Code]](./code/disfluency/remove_disfluency_gold.py)
    * We assess the effect of disfluency as a predictor in dementia detection by selectively removing disfluencies of three types:
       * Repetition - Word or Phrase Repetition - Identified by '[/]' token after the reparandum
-         * ex: <what are> [/] what are the instructions ? [+ exc] 19000_20484 
-         * <what are> phrase is repeated
+         * ex: \<what are\> [/] what are the instructions ? [+ exc] 19000_20484 
+         * \<what are\> phrase is repeated
       * Retracing - Word or Phrase Retracing
          * ex: and there are dishes [//] &uh &uh two cups and a saucer on the sink. 37402_42053 
          * dishes is changed to two cups and a saucer
