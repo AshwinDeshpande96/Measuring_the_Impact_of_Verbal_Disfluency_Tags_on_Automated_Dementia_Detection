@@ -1,11 +1,21 @@
 import re
 
 
+def update(new, old):
+    t = None
+    if new is not None:
+        t = new
+    if old is not None:
+        t = old
+    return t
+
+
 def count_words(text):
     if text is None:
         return
     text = text.split()
     return len(text)
+
 
 def get_percentage(num_words, total_words):
     if total_words is None or total_words == 0:
@@ -13,6 +23,7 @@ def get_percentage(num_words, total_words):
     if num_words is None:
         num_words = 0
     return (total_words - num_words) / total_words
+
 
 def clean_text(text):
     text = text.lower()

@@ -53,34 +53,40 @@ def merge_speaker_utterances(data):
 
 
 def main():
-    # Import MMSE score for each speaker
-    df = pd.read_csv('data.csv', usecols=['ID', 'mmse'])
-    id_to_mmse = df.set_index('ID')['mmse'].to_dict()
     # Import Data
     data = pd.read_pickle('../transcript_with_disfluency_parse_train.pickle')
+
     # 1. Add MMSE score to each utterance
+    df = pd.read_csv('data.csv', usecols=['ID', 'mmse'])
+    id_to_mmse = df.set_index('ID')['mmse'].to_dict()
     data['mmse'] = data.speaker.apply(lambda x: id_to_mmse.get(x, None))
+
     # 2. Create a column with no disfluency markers
     data['transcript_without_tags'] = data.transcript_with_tags.apply(lambda x: remove_tags(x))
     data['transcript_without_tags'] = data.transcript_without_tags.apply(lambda x: clean_text(x))
+
     # 3. Create a column with no repetition disfluency
     data['transcript_without_repetition'] = data.transcript_with_tags.apply(lambda x: remove_repetition(x))
     data['transcript_without_repetition'] = data.transcript_without_repetition.apply(lambda x: remove_tags(x))
     data['transcript_without_repetition'] = data.transcript_without_repetition.apply(lambda x: clean_text(x))
+
     # 4. Create a column with no retracing disfluency
     data['transcript_without_retracing'] = data.transcript_with_tags.apply(lambda x: remove_retracing(x))
     data['transcript_without_retracing'] = data.transcript_without_retracing.apply(lambda x: remove_tags(x))
     data['transcript_without_retracing'] = data.transcript_without_retracing.apply(lambda x: clean_text(x))
+
     # 5. Create a column with no repetition/retracing disfluency
     data['transcript_without_either'] = data.transcript_with_tags.apply(lambda x: remove_repetition(x))
     data['transcript_without_either'] = data.transcript_without_either.apply(lambda x: remove_retracing(x))
     data['transcript_without_either'] = data.transcript_without_either.apply(lambda x: remove_tags(x))
     data['transcript_without_either'] = data.transcript_without_either.apply(lambda x: clean_text(x))
+
     # 6. Save Statistics
     # Counts
     data['total_words'] = data.transcript_without_tags.apply(lambda x: count_words(x))
     data['num_words_rep'] = data.transcript_without_repetition.apply(lambda x: count_words(x))
     data['num_words_ret'] = data.transcript_without_retracing.apply(lambda x: count_words(x))
+
     # Percentage
     data['rep_del'] = data.apply(lambda x: get_percentage(x.num_words_rep, x.total_words), axis=1)
     data['ret_del'] = data.apply(lambda x: get_percentage(x.num_words_ret, x.total_words), axis=1)
@@ -103,14 +109,14 @@ def main():
     print("Rep: ", avg_rep_del)
     print("Ret: ", avg_ret_del)
 
-    # Speaker Level Data
+    # 7. Speaker Level Data
     data_final = merge_speaker_utterances(data)
 
     data_final['num_words_both'] = data_final.transcript_without_disfluency.apply(lambda x: count_words(x))
 
     data_final['both_del'] = data_final.apply(lambda x: get_percentage(x.num_words_both, x.total_words), axis=1)
 
-    # Speaker Level Statistics
+    # 8. Speaker Level Statistics
     both_del = [val for val in data_final.both_del.tolist() if val != -1]
     avg_both_del = np.mean(both_del)
     print("Both: ", avg_both_del)
