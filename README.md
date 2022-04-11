@@ -10,7 +10,7 @@ We use ADReSS data published as a part of INTERSPEECH 2020 challenge. This data 
 * HD - Control - Subjects with no cognitive decline
 * AD - Dementia - Subjects with mild cognitive impairment
 
-The data consists of audio clips of roughly <average_audio_length> seconds long for <number_of_participants> speakers, along with manually transcribed (According to CHAT protocol) text.
+The data consists of audio clips with mean average length of 1 minute 15 seconds for 108 speakers, along with manually transcribed (According to CHAT protocol) text.
 Each clip consist of utterances belong to one of two participants: the subject and interviewer.
 
 Following steps are carried out to prepare the data:
