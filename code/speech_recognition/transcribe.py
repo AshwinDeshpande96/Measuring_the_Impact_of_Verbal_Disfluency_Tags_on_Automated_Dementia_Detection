@@ -4,7 +4,7 @@ import re
 import pandas as pd
 from pydub import AudioSegment
 
-from Google_ASR import transcribe, sample_rate
+from google_asr import transcribe, sample_rate
 from wav2vec import transcribe_wav2vec
 from ..disfluency.remove_tags import remove_tags
 
