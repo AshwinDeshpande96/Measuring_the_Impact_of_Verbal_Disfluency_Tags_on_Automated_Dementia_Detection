@@ -33,7 +33,7 @@ Following steps are carried out to prepare the data:
 5. Remove disfluencies from ASR transcripts:[[Code]](./code/disfluency/remove_disfluency_fisher.py)
 
 ## Experiments
-
+ * [Experiments on Manually Annotated Transcripts](Experiments_Manually_Annotated_Transcript.ipynb)
 
 
 
