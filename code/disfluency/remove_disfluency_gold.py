@@ -7,6 +7,11 @@ from util import remove_tags, clean_text, count_words, get_percentage
 
 
 def merge_speaker_utterances(data):
+    """
+    All utterances belonging to same speaker are concatenated into a single string and added as a row in a new dataframe
+    :param data:
+    :return:
+    """
     data_final = {}
     for (idx, (speaker,
                transcript_without_tags,

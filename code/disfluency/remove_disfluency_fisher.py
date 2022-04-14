@@ -10,6 +10,11 @@ from util import count_words, get_percentage
 
 
 def get_words(text):
+    """
+    Removes tags from fisher annotated utterance
+    :param text: ex: Input: a E do _ guess _ getting _ older _ i E see E i _ so _
+    :return: text: ex: a do guess getting older i see i so
+    """
     if text is None:
         return
     tokens = text.split()
@@ -19,6 +24,11 @@ def get_words(text):
 
 
 def remove_underscore(text):
+    """
+    Replaces underscore tag with fluent tag "F"
+    :param text: ex: Input: a E do _ guess _ getting _ older _ i E see E i _ so _
+    :return: text: ex: Input: a E do F guess F getting F older F i E see E i F so F
+    """
     if text is None:
         return
     text = re.sub(r"\_", "F", text)
@@ -27,12 +37,22 @@ def remove_underscore(text):
 
 
 def remove_duplicates(text):
+    """
+    Removes repeated words in an utterance
+    :param text: ex: his sister has has her hand up finger up to her mouth like she 's saying
+    :return: text: ex: his sister has her hand up finger up to her mouth like she 's saying
+    """
     text = [i[0] for i in groupby(text.split())]
     text = " ".join(text)
     return text
 
 
 def remove_disfluency(text):
+    """
+    Removes difluent words in fisher annotated utterance
+    :param text: ex: Input: a E do _ guess _ getting _ older _ i E see E i _ so _
+    :return: text: ex: Input: do guess getting older i so
+    """
     if text is None:
         return
     text = text.split()
@@ -47,6 +67,11 @@ def remove_disfluency(text):
 
 
 def remove_filled_pauses(text):
+    """
+    Filled pause words like uh uhm oh are removed
+    :param text: ex:  um uh the the boy is trying to get a cookie out of the cookie jar but boy he 's about to fall off the stool
+    :return: text: ex: the the boy is trying to get a cookie out of the cookie jar but boy he 's about to fall off the stool
+    """
     if text is None:
         return
     text = re.sub(r"\b[uhmo]{2,}\b", "", text)
@@ -57,6 +82,11 @@ def remove_filled_pauses(text):
 
 
 def merge_speaker_utterances(data):
+    """
+    All utterances belonging to same speaker are concatenated into a single string and added as a row in a new dataframe
+    :param data:
+    :return:
+    """
     data_final = {}
     for (idx, (speaker,
                transcript_without_tags,
